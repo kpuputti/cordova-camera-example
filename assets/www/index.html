@@ -4,18 +4,24 @@
     <meta charset="utf-8">
     <meta name="viweport" content="width=device-width, initial-scale=1">
     <title>Cordova Camera Example</title>
+    <style>
+      img { float: left; margin: 5px; width: 100px; height: 100px; }
+    </style>
   </head>
   <body>
-    <button>Take picture</button>
+    <section>
+      <button>Take picture</button>
+    </section>
     <script src="cordova-1.7.0.js"></script>
     <script>
       window.addEventListener('DOMContentLoaded', function () {
         document.addEventListener('deviceready', function () {
-          alert('device ready');
           var button = document.querySelector('button');
 
-          var onSuccess = function () {
-            alert('capture success');
+          var onSuccess = function (files) {
+            var img = document.createElement('img');
+            img.src = files[0].fullPath;
+            document.body.appendChild(img);
           };
           var onError = function () {
             alert('capture error');
